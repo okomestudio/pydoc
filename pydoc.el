@@ -582,8 +582,9 @@ These are lines marked by `pydoc-example-code-leader-re'."
   (when (re-search-forward pydoc-example-code-leader-re limit t)
     (set-text-properties (match-beginning 1) (match-end 1)
                          '(font-lock-face pydoc-example-leader-face))
-    (org-src-font-lock-fontify-block
-     "python" (match-beginning 2) (match-end 2))
+		(let ((warning-minimum-log-level :error))
+      (org-src-font-lock-fontify-block
+       "python" (match-beginning 2) (match-end 2)))
     t))
 
 
